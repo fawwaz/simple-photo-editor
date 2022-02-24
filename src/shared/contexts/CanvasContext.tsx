@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useContext, useState } from "react";
-import { fabric } from "fabric";
+import { createContext, ReactNode, useContext, useState } from 'react';
+import { fabric } from 'fabric';
 
 export interface iCanvasContext {
   canvas: fabric.Canvas | undefined;
