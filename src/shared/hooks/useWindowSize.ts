@@ -27,7 +27,7 @@ export function useWindowSize(): Size {
       });
     }
     // Add event listener
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     // Call handler right away so state gets updated with initial window size
     handleResize();

@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import Head from 'next/head';
 import { IconContext } from 'react-icons';
 
 import WindowSizeProvider from 'shared/contexts/WindowSizeContext';
@@ -8,15 +9,24 @@ import Container from 'editor/components/Container/Container';
 
 const Home: NextPage = () => {
   return (
-    <WindowSizeProvider>
-      <CanvasProvider>
-        <IconContext.Provider value={{ className: 'react-icons' }}>
-          <ImageLoadProvider>
-            <Container />
-          </ImageLoadProvider>
-        </IconContext.Provider>
-      </CanvasProvider>
-    </WindowSizeProvider>
+    <>
+      <Head>
+        <title>Photo Editor</title>
+        <meta
+          name="description"
+          content="Just another simple photo editor"
+        ></meta>
+      </Head>
+      <WindowSizeProvider>
+        <CanvasProvider>
+          <IconContext.Provider value={{ className: 'react-icons' }}>
+            <ImageLoadProvider>
+              <Container />
+            </ImageLoadProvider>
+          </IconContext.Provider>
+        </CanvasProvider>
+      </WindowSizeProvider>
+    </>
   );
 };
 

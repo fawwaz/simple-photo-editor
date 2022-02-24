@@ -27,7 +27,7 @@ export default function FilePicker(props: FilePickerProps) {
               onChange={handleLoadFile}
               className="hidden"
             />
-            <h4 className="cursor-pointer text-gray-500 w-9/12 mx-auto text-center">
+            <h4 className="cursor-pointer text-gray-800 w-9/12 mx-auto text-center">
               Tap the icon to pick image or load JSON file
             </h4>
           </label>
