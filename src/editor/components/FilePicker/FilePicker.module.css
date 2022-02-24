@@ -1,0 +1,7 @@
+.container {
+  @apply flex justify-center items-center h-screen;
+}
+
+.icon {
+  @apply w-full flex justify-between;
+}
