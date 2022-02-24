@@ -11,25 +11,27 @@ type FilePickerProps = {
 };
 
 export default function FilePicker(props: FilePickerProps) {
-  const { handleLoadFile } = useFilePickerCallbacks({
-    onFileSelected: props.onFileSelected,
-  });
+  const { loadFile: handleLoadFile } = useFilePickerCallbacks();
 
   return (
     <div className={clsx('noprint', styles.container, props.className)}>
       <form>
-        <label htmlFor="file-picker">
-          <FiUploadCloud size="150" className={styles.icon} />
-          <input
-            id="file-picker"
-            type="file"
-            name={'photo'}
-            accept="image/png, image/jpeg, application/JSON"
-            onChange={handleLoadFile}
-            className="hidden"
-          />
-          <h4>Tap the icon to pick image or load JSON file</h4>
-        </label>
+        <div className={styles.wrapper}>
+          <label htmlFor="file-picker">
+            <FiUploadCloud size="150" className={styles.icon} />
+            <input
+              id="file-picker"
+              type="file"
+              name={'photo'}
+              accept="image/png, image/jpeg, application/JSON"
+              onChange={handleLoadFile}
+              className="hidden"
+            />
+            <h4 className="cursor-pointer text-gray-500 w-9/12 mx-auto text-center">
+              Tap the icon to pick image or load JSON file
+            </h4>
+          </label>
+        </div>
       </form>
     </div>
   );

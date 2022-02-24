@@ -3,5 +3,5 @@
 }
 
 .icon {
-  @apply w-full flex justify-between;
+  @apply w-full flex justify-between cursor-pointer text-gray-300;
 }

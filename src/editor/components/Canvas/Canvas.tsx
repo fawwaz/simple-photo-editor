@@ -5,14 +5,15 @@ import clsx from 'clsx';
 import { useFabricCanvas } from 'shared/contexts/CanvasContext';
 import { useWindowSize } from 'shared/hooks/useWindowSize';
 import styles from './Canvas.module.css';
+import Toolbar from '../Toolbar/Toolbar';
+import { getCanvasDimension } from 'editor/utils/getCanvasDimension';
+import { useImageLoad } from 'editor/contexts/ImageLoadContext';
 
-type CanvasProps = {
-  isFileLoaded: boolean;
-};
-
-export default function Canvas(props: CanvasProps) {
+export default function Canvas() {
   const { setCanvas } = useFabricCanvas();
   const { width, height } = useWindowSize();
+  const { isLoaded } = useImageLoad();
+  const CanvasDimension = getCanvasDimension({ width, height });
 
   useEffect(() => {
     if (!width || !height) {
@@ -20,21 +21,23 @@ export default function Canvas(props: CanvasProps) {
     }
 
     const fabricCanvas = new fabric.Canvas('main-canvas', {
-      width: 100,
-      height: 150,
-      backgroundColor: 'pink',
+      width: CanvasDimension.width,
+      height: CanvasDimension.height,
+      backgroundColor: 'white',
     });
     setCanvas(fabricCanvas);
   }, [width, height]);
 
   return (
-    <div className={clsx(styles.container, !props.isFileLoaded && styles.hide)}>
-      <canvas
-        id="main-canvas"
-        className={styles.canvas}
-        width={100}
-        height={150}
-      />
-    </div>
+    <>
+      <div className={clsx(styles.footer, !isLoaded && styles.hide)}>
+        <div className={styles.wrapper}>
+          <Toolbar />
+        </div>
+      </div>
+      <div className={clsx(styles.container, !isLoaded && styles.hide)}>
+        <canvas id="main-canvas" className={styles.canvas} />
+      </div>
+    </>
   );
 }

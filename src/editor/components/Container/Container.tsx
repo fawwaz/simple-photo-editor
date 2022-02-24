@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import FilePicker from 'editor/components/FilePicker/FilePicker';
 import Canvas from 'editor/components/Canvas/Canvas';
+import { useImageLoad } from 'editor/contexts/ImageLoadContext';
 
 export default function Container() {
-  const [isFileLoaded, setIsFileLoaded] = useState(false);
-
-  const handleSelectFile = () => setIsFileLoaded(true);
+  const { isLoaded } = useImageLoad();
 
   return (
-    <>
-      {!isFileLoaded && <FilePicker onFileSelected={handleSelectFile} />}
-      <Canvas isFileLoaded={isFileLoaded} />
-    </>
+    <div className="flex flex-col justify-center h-screen">
+      {!isLoaded && <FilePicker />}
+      <Canvas />
+    </div>
   );
 }

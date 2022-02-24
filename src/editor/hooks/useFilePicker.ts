@@ -3,15 +3,13 @@ import { fabric } from 'fabric';
 import { saveAs } from 'file-saver';
 
 import { useFabricCanvas } from 'shared/contexts/CanvasContext';
+import { useImageLoad } from 'editor/contexts/ImageLoadContext';
 
-type UseFilePickerParam = {
-  onFileSelected?: () => void;
-};
-
-export function useFilePickerCallbacks(param: UseFilePickerParam) {
+export function useFilePickerCallbacks() {
   const { canvas } = useFabricCanvas();
+  const { setIsLoaded } = useImageLoad();
 
-  const handleLoadFile = useCallback(
+  const loadFile = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (!event.currentTarget.files) {
         return;
@@ -30,7 +28,7 @@ export function useFilePickerCallbacks(param: UseFilePickerParam) {
         reader.onload = function (evt) {
           canvas?.loadFromJSON(evt?.target?.result, function () {
             canvas.renderAll();
-            param.onFileSelected && param.onFileSelected();
+            setIsLoaded(true);
           });
         };
       } else if (file.type === 'image/png' || file.type == 'image/jpeg') {
@@ -54,24 +52,34 @@ export function useFilePickerCallbacks(param: UseFilePickerParam) {
             canvas?.centerObject(img);
             canvas?.add(img);
             canvas?.renderAll();
-            param.onFileSelected && param.onFileSelected();
+            setIsLoaded(true);
+            console.log(canvas?.toObject());
           };
         };
         reader.readAsDataURL(file);
       }
     },
-    [canvas, param.onFileSelected]
+    [canvas]
   );
 
-  const handleExportJSON = useCallback(() => {
+  const exportJSON = useCallback(() => {
     const fileToSave = new Blob([JSON.stringify(canvas)], {
       type: 'application/json',
     });
     saveAs(fileToSave, 'photo.json');
   }, []);
 
+  const clearCanvas = useCallback(() => {
+    canvas?.clear();
+    canvas?.setBackgroundColor('white', () => {
+      canvas?.renderAll();
+      setIsLoaded(false);
+    });
+  }, [canvas]);
+
   return {
-    handleLoadFile,
-    handleExportJSON,
+    loadFile,
+    exportJSON,
+    clearCanvas,
   };
 }

@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  @apply bg-neutral-100 h-full;
+}
+
+body {
+  @apply flex flex-col;
+}
+
 .react-icons {
   vertical-align: middle;
 }
