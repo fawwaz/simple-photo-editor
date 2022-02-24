@@ -1,7 +1,4 @@
-import { Size } from 'shared/hooks/useWindowSize';
-
-const M_SCREEN = 769;
-const S_SCREEN = 481;
+import { M_SCREEN, Size, S_SCREEN } from 'shared/hooks/useWindowSize';
 
 export function getCanvasDimension(screen: Size) {
   if (!screen.width || !screen.height) {

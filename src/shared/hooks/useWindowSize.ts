@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
 
+// Common breakpoints
+export const XL_SCREEN = 1200;
+export const L_SCREEN = 1025;
+export const M_SCREEN = 769;
+export const S_SCREEN = 481;
+
 // Define general type for useWindowSize hook, which includes width and height
 export interface Size {
   width?: number;

@@ -3,15 +3,16 @@ import { fabric } from 'fabric';
 import clsx from 'clsx';
 
 import { useFabricCanvas } from 'shared/contexts/CanvasContext';
-import { useWindowSize } from 'shared/hooks/useWindowSize';
-import styles from './Canvas.module.css';
-import Toolbar from '../Toolbar/Toolbar';
 import { getCanvasDimension } from 'editor/utils/getCanvasDimension';
 import { useImageLoad } from 'editor/contexts/ImageLoadContext';
+import { useBrowserSize } from 'shared/contexts/WindowSizeContext';
+
+import styles from './Canvas.module.css';
+import Toolbar from '../Toolbar/Toolbar';
 
 export default function Canvas() {
   const { setCanvas } = useFabricCanvas();
-  const { width, height } = useWindowSize();
+  const { width, height } = useBrowserSize();
   const { isLoaded } = useImageLoad();
   const CanvasDimension = getCanvasDimension({ width, height });
 
