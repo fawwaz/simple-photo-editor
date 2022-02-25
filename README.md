@@ -2,7 +2,7 @@
 
 ## Demo
 
-Insert Gif recording here
+![demo](https://github.com/fawwaz/grab/blob/master/grab-landingpage-winnie.gif)
 
 For demo, please visit [fawwaz.github.io/simple-photo-editor](https://fawwaz.github.io/simple-photo-editor)
 
