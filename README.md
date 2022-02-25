@@ -2,7 +2,7 @@
 
 ## Demo
 
-![demo](https://github.com/fawwaz/grab/blob/master/grab-landingpage-winnie.gif)
+![demo](https://github.com/fawwaz/simple-photo-editor/raw/main/doc/demo.gif)
 
 For demo, please visit [fawwaz.github.io/simple-photo-editor](https://fawwaz.github.io/simple-photo-editor)
 
@@ -40,13 +40,14 @@ I like to organize my app based on domain, then by functions. I found this folde
 Here is my folder overall structure
 
 ```
-# src
-## editor
-### components
-### contexts
-## shared (shared stuff, across domains)
-### contexts
-### hooks
+.
+└── src
+    ├── editor
+    │   ├── components
+    │   └── contexts
+    └── shared (shared stuff, across domains)
+        ├── contexts
+        └── hooks
 ```
 
 Since currently we only have 1 domain (editor), there is only 1 folder inside `src`.
