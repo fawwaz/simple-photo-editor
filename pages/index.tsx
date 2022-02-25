@@ -12,10 +12,11 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Photo Editor</title>
+        <meta name="description" content="Just another simple photo editor" />
         <meta
-          name="description"
-          content="Just another simple photo editor"
-        ></meta>
+          name="keywords"
+          content="photo, editor, pwa, app, react, nextjs"
+        />
       </Head>
       <WindowSizeProvider>
         <CanvasProvider>

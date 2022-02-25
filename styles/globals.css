@@ -21,3 +21,7 @@ body {
     visibility: hidden;
   }
 }
+
+@page {
+  size: 10in 15in;
+}

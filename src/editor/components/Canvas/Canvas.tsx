@@ -31,7 +31,7 @@ export default function Canvas() {
 
   return (
     <>
-      <div className={clsx(styles.footer, !isLoaded && styles.hide)}>
+      <div className={clsx(styles.footer, !isLoaded && styles.hide, 'noprint')}>
         <div className={styles.wrapper}>
           <Toolbar />
         </div>
