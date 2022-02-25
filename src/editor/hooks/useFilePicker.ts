@@ -19,16 +19,15 @@ export function useFilePickerCallbacks() {
       }
 
       if (!width || !height) {
-        console.log('width, height', width, height);
         return;
       }
 
       const file = event.currentTarget.files[0];
-      console.log('file', file);
+
       if (!file) {
         return;
       }
-      console.log('here2');
+
       // Check the file type if it is an image or stored json file
       if (file.type === 'application/json') {
         var reader = new FileReader();
@@ -45,7 +44,7 @@ export function useFilePickerCallbacks() {
         };
       } else if (file.type === 'image/png' || file.type == 'image/jpeg') {
         const reader = new FileReader();
-        console.log('reader', reader);
+
         // Create callback to parse image
         reader.onload = function (evt) {
           const imgObj = new Image();
@@ -56,30 +55,24 @@ export function useFilePickerCallbacks() {
           imgObj.onload = function () {
             let img = new fabric.Image(imgObj);
             const scale = getImageScale(imgObj, { width, height });
-            console.log('scale', scale);
+
             img.set({
               angle: 0,
               padding: 0,
               height: imgObj.height,
               width: imgObj.width,
-            });
-
-            img.set({
               scaleX: scale,
               scaleY: scale,
             });
 
             canvas?.centerObject(img);
             canvas?.add(img);
+            console.log(canvas?.toJSON());
             canvas?.renderAll();
             setIsLoaded(true);
-            console.log(canvas?.toObject());
           };
         };
         reader.readAsDataURL(file);
-        console.log('reader', file.type);
-      } else {
-        console.log('file.type', file.type);
       }
     },
     [canvas]
