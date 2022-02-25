@@ -78,11 +78,12 @@ export function useFilePickerCallbacks() {
   );
 
   const exportJSON = useCallback(() => {
+    if (!canvas) return;
     const fileToSave = new Blob([JSON.stringify(canvas)], {
       type: 'application/json',
     });
     saveAs(fileToSave, 'photo.json');
-  }, []);
+  }, [canvas]);
 
   const clearCanvas = useCallback(() => {
     if (!canvas) return;

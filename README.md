@@ -4,7 +4,7 @@
 
 Insert Gif recording here
 
-For demo, please visit [](github.com)
+For demo, please visit [fawwaz.github.io/simple-photo-editor](https://fawwaz.github.io/simple-photo-editor)
 
 ## Requirements
 
