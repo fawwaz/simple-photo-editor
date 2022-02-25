@@ -24,7 +24,7 @@ export function useFilePickerCallbacks() {
 
       const file = event.currentTarget.files[0];
 
-      if (!file) {
+      if (!file || !canvas) {
         return;
       }
 
@@ -37,7 +37,7 @@ export function useFilePickerCallbacks() {
 
         // Load the parsed data to canvas
         reader.onload = function (evt) {
-          canvas?.loadFromJSON(evt?.target?.result, function () {
+          canvas.loadFromJSON(evt?.target?.result, function () {
             canvas.renderAll();
             setIsLoaded(true);
           });
@@ -65,10 +65,9 @@ export function useFilePickerCallbacks() {
               scaleY: scale,
             });
 
-            canvas?.centerObject(img);
-            canvas?.add(img);
-            console.log(canvas?.toJSON());
-            canvas?.renderAll();
+            canvas.centerObject(img);
+            canvas.add(img);
+            canvas.renderAll();
             setIsLoaded(true);
           };
         };
@@ -86,9 +85,10 @@ export function useFilePickerCallbacks() {
   }, []);
 
   const clearCanvas = useCallback(() => {
-    canvas?.clear();
-    canvas?.setBackgroundColor('white', () => {
-      canvas?.renderAll();
+    if (!canvas) return;
+    canvas.clear();
+    canvas.setBackgroundColor('white', () => {
+      canvas.renderAll();
       setIsLoaded(false);
     });
   }, [canvas]);
